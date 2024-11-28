@@ -121,3 +121,16 @@ async function handleLogin() {
 
       document.addEventListener('DOMContentLoaded', main);
   }
+
+
+  async function redirectIfNotLoggedIn() {
+    try {
+      const logged = await checkLogin(); // Call the async function
+      if (!logged) {
+        // Redirect to the login page if not logged in
+        window.location.href = "./index.html";
+      }
+    } catch (err) {
+      console.error("Error in login check:", err);
+    }
+  }
