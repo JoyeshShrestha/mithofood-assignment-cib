@@ -38,9 +38,9 @@ The app is divided into two parts:
 
 ![1](https://github.com/user-attachments/assets/3975fc8d-4df0-4570-8f82-67fa4792f842)
 
-![2](assets/2.png)
-![3](assets/3.png)
-![4](assets/4.png)
+![2](https://github.com/user-attachments/assets/097dc49e-b92f-4f5b-b9a3-81be7d7b748f)
+![3](https://github.com/user-attachments/assets/6ac5ef66-6d22-4181-b67d-c602af27b66d)
+![4](https://github.com/user-attachments/assets/357f21d3-39df-431d-8091-fef2efe32924)
 
 ---
 
@@ -176,6 +176,6 @@ mithofoods/
 
 ## Database Design
 
-![Schema](assests/SchemaDesign.png)
+![SchemaDesign](https://github.com/user-attachments/assets/09428473-5fab-4b10-9aa3-087a3874298c)
 
 ---
