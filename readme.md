@@ -36,7 +36,7 @@ The app is divided into two parts:
 - **Frontend**: Built with HTML, CSS, and JavaScript.
 - **Backend**: Powered by Laravel, providing a robust and scalable framework for handling API requests and database interactions.
 
-![Login Screenshot](assets/1.png)
+![Login Screenshot](<(https://github.com/user-attachments/assets/3975fc8d-4df0-4570-8f82-67fa4792f842)>)
 ![Dashboard Screenshot](assets/2.png)
 ![Add Recipe Screenshot](assets/3.png)
 ![Profile Screenshot](assets/4.png)
