@@ -19,8 +19,7 @@ The backend repo for recipe may not open. Please consider this repo for backend 
   - [Backend](#backend)
 - [Usage](#usage)
 - [Project Structure](#project-structure)
-- [Contributing](#contributing)
-- [License](#license)
+- [Database Design](#database-design)
 
 ---
 
@@ -36,6 +35,11 @@ The app is divided into two parts:
 
 - **Frontend**: Built with HTML, CSS, and JavaScript.
 - **Backend**: Powered by Laravel, providing a robust and scalable framework for handling API requests and database interactions.
+
+![Login Screenshot](assets/1.png)
+![Dashboard Screenshot](assets/2.png)
+![Add Recipe Screenshot](assets/3.png)
+![Profile Screenshot](assets/4.png)
 
 ---
 
@@ -169,12 +173,8 @@ mithofoods/
 
 ---
 
-## Contributing
+## Database Design
 
-Contributions are welcome! Please follow these steps:
+![Schema](assests/SchemaDesign.png)
 
-1. Fork the repository.
-2. Create a new branch (`git checkout -b feature-name`).
-3. Commit your changes (`git commit -m 'Add some feature'`).
-4. Push to the branch (`git push origin feature-name`).
-5. Open a pull request.
+---
