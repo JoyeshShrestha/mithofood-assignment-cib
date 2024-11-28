@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="css/dashboard.css">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Pacifico&display=swap" rel="stylesheet">
+
+    <title>Dashboard</title>
+</head>
+<body>
+  <header>
+<script src="js/index.js"> </script>
+
+    <script src="js/auth.js"></script> <!-- Load the external script -->
+    <script>
+      (async function () {
+        try {
+          const logged = await checkLogin(); // Call the async function
+          if (!logged) {
+            // Redirect to the login page if not logged in
+            window.location.href = "./index.html";
+          }
+        } catch (err) {
+          console.error("Error in login check:", err);
+        }
+      })();
+    </script>
+     <div class="navbar d-flex flex-column flex-md-row p-3 bg-body-white fixed-top">
+          <!-- Logo and Navbar Links -->
+          <a href="/" class="d-flex align-items-center mb-3 mb-md-0 me-md-auto link-body-emphasis text-decoration-none">
+            <h1 class="logo">mithofoods</h1>
+          </a>
+          <hr>
+          <ul class="nav nav-pills mb-auto text-left flex-md-row">
+            <li class="nav-item">
+              <a href="./dashboard.html" class="nav-link link-body-emphasis present">
+                <svg class="bi pe-none me-2" width="16" height="16"><use xlink:href="#speedometer2"></use></svg>
+                Dashboard
+              </a>
+            </li>
+            <div id="userNav"></div>
+            <li class="nav-item">
+              <a href="./recipe.html" class="nav-link link-body-emphasis  ">
+                <svg class="bi pe-none me-2" width="16" height="16"><use xlink:href="#speedometer2"></use></svg>
+                Recipe
+              </a>
+            </li>
+            <li class="nav-item">
+              <a href="./profile.html" class="nav-link link-body-emphasis">
+                <svg class="bi pe-none me-2" width="16" height="16"><use xlink:href="#speedometer2"></use></svg>
+                Profile
+              </a>
+            </li>
+            <li class="nav-item mt-5">
+              <button class="btn btn-dark nav-link link-body-emphasis" type="button" onclick="logoutUser()">Logout</button>
+            </li>
+          </ul>
+        </div>
+
+  </header>
+    
+
+  <main >
+  
+    <div class="w-100 mt-5 pt-5 users" style="overflow: hidden;" >
+      <h2 class="mt-5" style="color:  #fa744c; font-weight: 800; font-size: 2rem;">Dashboard</h2>
+<div style="display: flex;">
+      <div class="latest"></div>
+      <div>
+      <div class="welcomelatestBox mx-4" style="width: 700px; height: 200px;"><div id="welcomeMessage"></div>
+     <h5 class="mt-2" style="font-size: 1rem; font-weight: 300; color: azure; font-style: italic;">"Cooking is love made visible."</h5>
+      <img src="img/cook.gif " style="position: absolute;bottom:210px ;right:50px ;height: auto; width: 350px;">
+    </div>
+    <div class="aboutlatestBox mx-4 mt-4" style="width: 700px; height: 170px;">
+      <h3 style="font-weight: 300; ">About</h3>
+     <h5 class="mt-3" style="font-size: 1.1rem; font-weight: 300;  ">Mithofoods is a dynamic platform developed by Joyesh Shrestha, utilizing Laravel for the backend and HTML/CSS for the frontend, offering a seamless user experience."</h5>
+      <br>
+     
+    </div>
+  </div>
+    </main>   
+    
+    
+<script>
+    const data = userInfo();
+   
+
+  
+    const userName = data.name;
+
+    console.log('Data',userName);
+    
+   if (userName) {
+    document.getElementById('welcomeMessage').innerText = `Welcome, ${userName}!`;
+  } else {
+    document.getElementById('welcomeMessage').innerText = "Welcome, Guest!";
+  }
+
+
+    
+
+</script>
+
+<script>
+  // Fetch the latest recipe from the API
+  async function fetchLatestRecipe() {
+    try {
+      const response = await fetch('http://127.0.0.1:8000/api/latestrecipe'); // Make a request to the API
+
+      if (!response.ok) {
+        throw new Error('Recipe not found');
+      }
+
+      const data = await response.json(); // Parse the JSON response
+      const recipe = data.recipe; // Get the recipe object
+
+      // Check if the recipe exists
+      if (recipe) {
+        // Insert the recipe data into the latest div
+        document.querySelector('.latest').innerHTML = `
+       <div class="latestBox">
+
+        <h4 >Latest Recipe</h4>
+          <div class="recipe-card mb-3"  style="display:flex; max-width: 700px;
+  height: 300px; " onclick="getRecipeDetails(${recipe.id})">
+            <img src="${recipe.image}" class="card-img-top recipe-img" alt="${recipe.recipe_name}">
+            <div class="card-body mx-4">
+              <h5 class="card-title mt-5">${recipe.recipe_name}</h5>
+              <p class="card-subtitle text-muted my-2">${recipe.subtitle}</p>
+              
+              <p class="card-text">Created on: ${new Date(recipe.created_at).toLocaleString()}</p>
+            </div>
+          </div>
+       </div>
+       
+          `;
+      } else {
+        // If no recipe is found, show a message
+        document.querySelector('.latest').innerHTML = `<p>No recipe found.</p>`;
+      }
+    } catch (error) {
+      // Handle errors (e.g., network issues)
+      console.error('Error fetching the latest recipe:', error);
+      document.querySelector('.latest').innerHTML = `<p>Error loading recipe.</p>`;
+    }
+  }
+
+  // Call the function to fetch and display the latest recipe
+  fetchLatestRecipe();
+</script>
+
+
+<script>
+
+CheckNav();
+</script>
+
+    
+
+
+    <script src="js/auth.js"></script>
+
+
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/js/bootstrap.bundle.min.js"></script>
+      
+</body>
+</html>

@@ -1,0 +1,478 @@
+
+/* General Styles */
+body {
+  margin: 0;
+  font-family: 'Poppins', sans-serif;
+  background-color: #f9f9f9;
+  padding-top: 80px; /* Space for fixed navbar */
+  overflow-x: hidden;
+
+}
+
+/* Header Styles */
+header {
+  position: relative; /* Position header relative to the page */
+  width: 100%; /* Full width */
+  z-index: 1000; /* Ensure it stays above the content */
+}
+
+/* Navbar Styling */
+.navbar {
+  background-color: #ffffff;
+  box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
+  position: sticky;
+  top: 0;
+  z-index: 1000; /* Ensure navbar stays above other content */
+  width: 100%; /* Full width */
+}
+
+/* Logo Styling */
+.navbar .logo {
+  font-family: 'Pacifico', cursive;
+  color: #fa744c;
+  font-size: 2.5rem;
+}
+
+/* Navbar Links */
+.navbar ul {
+  display: flex;
+  justify-content: flex-start;
+  list-style-type: none;
+  padding-left: 0;
+}
+
+.nav-item {
+  margin-right: 20px;
+}
+
+.nav-link {
+  color: #333;
+  text-decoration: none;
+  font-size: 1rem;
+  padding: 10px;
+}
+
+.nav-link:hover {
+  color: #fa744c;
+}
+
+
+.nav-link.present {
+
+  color: #fa744c;
+  text-decoration: solid underline #fa744c 2px;
+  font-weight: 500;
+  
+ 
+}
+
+/* Logout Button */
+.navbar .btn-dark {
+  padding: 10px 20px;
+  background-color: #333;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.navbar .btn-dark:hover {
+  background-color: #fa744c;
+}
+
+/* Adjustments for mobile */
+@media (max-width: 768px) {
+  .navbar {
+    flex-direction: column;
+  }
+
+  .nav-item {
+    margin-right: 0;
+    margin-bottom: 10px;
+  }
+}
+
+/* Content Styles */
+main {
+  /* padding-top: 80px;  */
+}
+
+
+#welcomeMessage{
+  font-family: 'Poppins', sans-serif;
+  font-size: 2rem;
+  font-weight: 400;
+  max-width: 5000px;
+  color: white;
+}
+/* Responsive Adjustments */
+@media (max-width: 768px) {
+  .navbar {
+    flex-direction: column;
+  }
+  .nav-item {
+    margin-right: 0;
+    margin-bottom: 10px;
+  }
+}
+
+  
+
+  .logo {
+    font-family: 'Pacifico', cursive;
+    color: #fa744c;
+    font-size: 2.5rem;
+
+  }
+ 
+
+  .latestBox{
+    /* border: 0.5px solid rgb(99, 99, 99); */
+    padding: 20px;
+    border-radius: 10px;
+  max-width: 700px;
+  height: 400px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  
+  }
+
+  .welcomelatestBox{
+    padding: 20px;
+    border-radius: 10px;
+  max-width: 700px;
+  height: 400px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  background: linear-gradient(270deg, #f08217, #e37000, #ff9c6f, #f7d8b9);
+  background-size: 800% 800%;
+
+  -webkit-animation: AnimationName 30s ease infinite;
+  -moz-animation: AnimationName 30s ease infinite;
+  animation: AnimationName 30s ease infinite;
+}
+
+@-webkit-keyframes AnimationName {
+  0%{background-position:0% 50%}
+  50%{background-position:100% 50%}
+  100%{background-position:0% 50%}
+}
+@-moz-keyframes AnimationName {
+  0%{background-position:0% 50%}
+  50%{background-position:100% 50%}
+  100%{background-position:0% 50%}
+}
+@keyframes AnimationName {
+  0%{background-position:0% 50%}
+  50%{background-position:100% 50%}
+  100%{background-position:0% 50%}
+}
+
+.aboutlatestBox{
+  padding: 20px;
+  border-radius: 10px;
+max-width: 700px;
+height: 200px;
+box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+color: #000000;
+}
+
+  .container {
+    
+    font-family: 'Poppins', sans-serif;
+    font-weight: 400;
+    max-width: 5000px;
+  
+  }
+  .users {
+    height: 100vh;
+    font-family: 'Poppins', sans-serif;
+/* position: absolute; */
+  /* max-width: 100%; */
+  margin-top: 500px;
+    margin-left: 50px; /* Space on the left */
+    
+
+    /* box-sizing: border-box; */
+  }
+  
+  .card-container {
+    width: 100%;
+    
+     }
+ 
+
+  .card {
+    
+    margin: 10px 0; /* Add vertical spacing between rows */
+  }
+
+
+.active {
+  background-color: rgb(255, 124, 36) !important; /* Ensures the style overrides any existing styles */
+color: white;
+}
+
+
+
+
+
+
+
+
+  /* Popup Styling */
+.popup-overlay {
+  display: none; /* Hidden by default */
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.5);
+  justify-content: center;
+  align-items: center;
+  z-index: 1000;
+}
+
+.popup {
+  background: white;
+  padding: 20px;
+  border-radius: 10px;
+  width: 500px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+.popup h2 {
+  margin-bottom: 20px;
+}
+
+.popup label {
+  /* display: block; */
+  margin: 10px 0 5px;
+}
+
+.popup input {
+  /* width: 50%; */
+  padding: 8px; 
+  margin-bottom: 20px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+}
+
+.popup-actions {
+  display: flex;
+  justify-content:space-between;
+}
+
+.popup-actions button {
+  width: 40%;
+}
+
+
+.popup-actions button:hover {
+  opacity: 0.9;
+}
+
+.openBtn{
+  position: fixed; /* Makes the button sticky */
+  bottom: 80px; /* Distance from the bottom of the viewport */
+  right: 80px; /* Distance from the right of the viewport */
+  background-color: rgb(255, 124, 36); /* Orange color */
+  color: white;
+  z-index: 1;
+  width: 80px; /* Increased width */
+  height: 80px; /* Increased height */
+  border-radius: 60%; /* Makes the button circular */
+  font-size: 1rem; /* Increased font size */
+
+  text-align: center;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
+  border: none; /* Removes default border */
+  box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2); /* Adds a subtle shadow */
+  transition: all 0.3s ease; /* Adds a hover effect */
+}
+
+.openBtn:hover {
+  background-color: rgb(255, 100, 20); /* Darker orange on hover */
+  border-radius: 20%; /* Makes the button circular */
+
+  transform: scale(1.5); /* Slightly increases size on hover */
+}
+
+.card:hover{
+  background: rgb(245,111,79);
+  background: linear-gradient(90deg, rgba(245,111,79,1) 0%, rgba(239,85,16,1) 18%, rgb(253, 173, 76) 100%); 
+  transform: scale(1.1); 
+  margin-bottom: 50px;
+  box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2); /* Adds a subtle shadow */
+  
+color: white;
+}
+
+/* General Page Styling */
+.recipes {
+  /* height: 100vh; Full viewport height */
+  font-family: 'Poppins', sans-serif;
+  background-color: #f9f9f9; /* Light background for contrast */
+  box-sizing: border-box; /* Include padding in width calculations */
+  padding-left: 80px;
+  padding-top: 80px;
+
+}
+
+
+/* Container Styling */
+.recipe-card-container {
+  display: flex;
+  gap: 20px; /* Add space between cards */
+  justify-content:start; /* Center align cards */
+  margin: 0 auto; /* Center the container */
+ 
+}
+
+
+/* Card Styling */
+.recipe-card {
+  /* display: flex; */
+  padding: 10px;
+  max-width: 400px; /* Restrict maximum width */
+  min-width: 200px; /* Set a minimum width for consistency */
+  width: 100%;
+  transition: transform 0.3s ease, box-shadow 0.3s ease, background-color 0.3s ease; /* Smooth animations */
+  border-radius: 10px; /* Rounded corners */
+  overflow: hidden; /* Clip content to the card */
+  background-color: #ffffff; /* Default card background */
+  box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.1); /* Subtle shadow for depth */
+}
+
+/* Image Styling */
+.recipe-img {
+  width: 100%; /* Ensure images scale properly */
+  height: 500px; /* Fixed height for consistent layout */
+  object-fit: cover; /* Maintain aspect ratio and fill the box */
+}
+
+/* Card Body Styling */
+.card-body {
+  padding: 15px; /* Add padding inside the card */
+  text-align: center; /* Center-align text for aesthetic */
+}
+
+.card-title {
+  font-size: 1.5rem; /* Make title slightly larger */
+  font-weight: 500; /* Bold for emphasis */
+  margin-bottom: 20px; /* Add spacing below title */
+}
+
+.card-subtitle {
+  font-size: 14px;
+  margin-bottom: 50px; /* Subtitle smaller than title */
+  color: #757575; /* Subtle gray for secondary text */
+}
+
+/* Hover Effect */
+.recipe-card:hover {
+  background: linear-gradient(
+    90deg,
+    rgba(245, 111, 79, 1) 0%,
+    rgba(239, 85, 16, 1) 18%,
+    rgb(253, 173, 76) 100%
+  ); /* Vibrant gradient */
+  transform: scale(1.05); /* Slight enlargement */
+  box-shadow: 0px 6px 12px rgba(0, 0, 0, 0.2); /* Stronger shadow on hover */
+  color: white; /* White text for better contrast */
+  z-index: 10; /* Bring hovered card above others */
+}
+
+/* Ensure smooth hover effect transition */
+.recipe-card:hover .card-title,
+.recipe-card:hover .card-subtitle {
+  color: white; /* Ensure text remains visible on gradient */
+}
+
+/* Responsive Design */
+@media (max-width: 1024px) {
+  .recipe-card {
+    flex: 1 1 calc(33.33% - 20px); /* 3 cards per row */
+  }
+}
+
+@media (max-width: 768px) {
+  .recipe-card {
+    flex: 1 1 calc(50% - 20px); /* 2 cards per row */
+  }
+}
+
+@media (max-width: 480px) {
+  .recipe-card {
+    flex: 1 1 100%; /* 1 card per row */
+  }
+}
+
+/* Center the container and content */
+.recipe-details-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center; /* Centers horizontally */
+  justify-content: center; /* Centers vertically */
+  text-align: center;
+  padding: 20px;
+}
+
+/* Styling for the image */
+.recipe_detail_image {
+  width: 80%; /* You can adjust this to your preferred size */
+  max-width: 600px; /* Max width to prevent the image from becoming too large */
+  height: auto; /* Maintain aspect ratio */
+  object-fit: cover; /* Ensures the image fits the container */
+  margin-bottom: 20px;
+}
+
+
+
+/* Optional button styling */
+#back-button {
+  margin-bottom: 20px;
+}
+
+
+.recipe_detail_title{
+  
+  font-weight: 700;
+}
+
+.recipe_detail_subtitle{
+  color: #757575;
+  font-weight: 200;
+}
+
+.recipe_detail_description{
+  /* color: #757575; */
+  font-weight: 400;
+  font-size: 1.2rem; /* Standard font size for readability */
+  line-height: 1.5; /* Increases line height for better readability */
+  margin-top: 15px; /* Adds spacing above the description */
+  margin-bottom: 20px; /* Adds spacing below the description */
+  text-align: justify; /* Ensures the text is spread across the width, improving readability */
+  word-wrap: break-word; /* Breaks long words to avoid overflow */
+  padding: 10px 300px; /* Adds some padding on top and bottom */
+}
+
+.user-details-container{
+
+display: flex;
+justify-content: center;
+gap: 100px;
+
+}
+.profile_first{
+  font-size: 1rem;
+  font-weight: 200;
+}
+
+
+.user_detail{
+  font-size: 1rem;
+  font-weight: 500;
+}

@@ -1,0 +1,331 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="css/dashboard.css">
+  
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Pacifico&display=swap" rel="stylesheet">
+  
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+  
+  <title>Users</title>
+</head>
+<body>
+  <header>
+    <script src="js/index.js"></script> <!-- Load the external script -->
+
+    <script src="js/auth.js"></script> <!-- Load the external script -->
+    <script>
+      (async function () {
+        try {
+          const logged = await checkLogin(); // Call the async function
+          console.log("Logged In:", logged);
+          if (!logged) {
+            window.location.href = "./index.html"; // Redirect if not logged in
+          }
+        } catch (err) {
+          console.error("Error in login check:", err);
+        }
+      })();
+    </script>
+     <div class="navbar d-flex flex-column flex-md-row p-3 bg-body-white fixed-top">
+      <!-- Logo and Navbar Links -->
+      <a href="/" class="d-flex align-items-center mb-3 mb-md-0 me-md-auto link-body-emphasis text-decoration-none">
+        <h1 class="logo">mithofoods</h1>
+      </a>
+      <hr>
+      <ul class="nav nav-pills mb-auto text-left flex-md-row">
+        <li class="nav-item">
+          <a href="./dashboard.html" class="nav-link link-body-emphasis">
+            <svg class="bi pe-none me-2" width="16" height="16"><use xlink:href="#speedometer2"></use></svg>
+            Dashboard
+          </a>
+        </li>
+        <div id="userNav" class=""></div>
+        <li class="nav-item">
+          <a href="./recipe.html" class="nav-link link-body-emphasis ">
+            <svg class="bi pe-none me-2" width="16" height="16"><use xlink:href="#speedometer2"></use></svg>
+            Recipe
+          </a>
+        </li>
+        <li class="nav-item">
+          <a href="./profile.html" class="nav-link link-body-emphasis">
+            <svg class="bi pe-none me-2" width="16" height="16"><use xlink:href="#speedometer2"></use></svg>
+            Profile
+          </a>
+        </li>
+        <li class="nav-item mt-5">
+          <button class="btn btn-dark nav-link link-body-emphasis" type="button" onclick="logoutUser()">Logout</button>
+        </li>
+      </ul>
+    </div>
+</header>
+ 
+<div class="w-100 mt-5 pt-5 users" >
+  <h2 class="mt-5" style="color:  #fa744c; font-weight: 800; font-size: 2rem;">All Users</h2>
+  <button class="openBtn"  id="openPopupBtn" >Add Users</button>
+
+  <!-- pop user add user -->
+  <div class="popup-overlay" id="popupOverlay">
+    <div class="popup ps-5">
+      <h2>Add New User</h2>
+      <form>
+        <label for="name">Username:</label>
+        <input type="text" id="username" name="name" required><br>
+        <label for="email">Email:</label>
+        <input type="email" id="email" name="email" required><br>
+        <label for="password">Password:</label>
+        <input type="password" id="password" name="password" required><br>
+        <p>Role:</p>
+        <div id="twoRoles">
+       
+
+      </div>
+        <div class="popup-actions">
+          <button class="btn btn-success" type="button" onclick="addUser()">Save</button>
+
+          <button class="btn btn-danger" type="button" id="closePopupBtn">Cancel</button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+ 
+  <div class="card-container">
+<div id="all_users" class="mt-4" style="display: flex; gap: 10px; flex-wrap: wrap;  margin-right: 50px; " >
+
+</div>
+</div>
+</div>
+
+ 
+</div>
+</div>
+</div>
+ <!-- pop user edit user -->
+ <div class="popup-overlay" id="updatepopupOverlay">
+  <div class="popup ps-5">
+    <h2>Edit User</h2>
+    <div id="editForm"></div>
+
+
+    
+  
+  </div>
+</div>
+
+<script>
+  const Logged_user_info = userInfo();
+
+  // Determine the HTML for the radio buttons based on the role
+  let radioHtml = "";
+
+  if (Logged_user_info.role_id === 1) {
+    // Admin can assign both Admin and User roles
+    radioHtml = `
+      <div>
+        <input type="radio" id="admin" name="role_id" value="2">
+        <label for="admin">Admin</label>
+      </div>
+      <div>
+        <input type="radio" id="user" name="role_id" value="3">
+        <label for="user">User</label>
+      </div>`;
+  } else if (Logged_user_info.role_id === 2) {
+    // Managers can only assign User role
+    radioHtml = `
+      <div>
+        <input type="radio" id="user" name="role_id" value="3">
+        <label for="user">User</label>
+      </div>`;
+  }
+
+  // Inject the HTML into the element
+  document.getElementById("twoRoles").innerHTML = radioHtml;
+</script>
+
+
+
+  <script>
+   async function fetchAndDisplayUsers() {
+  try {
+    const Logged_user_info = userInfo();
+      if (!Logged_user_info) {
+        console.error("Logged-in user information is missing.");
+        return;
+      }
+
+      // Fetch all users
+      const allUsersData = await getUsers();
+      const users = JSON.parse(allUsersData);
+
+      // Filter users based on logged-in user's role
+      let filteredUsers = [];
+      if (Logged_user_info.role_id === 1) {
+        // Admin: Display users with role_id 2 and 3
+        filteredUsers = users.users.filter(user => user.role.id === 2 || user.role.id === 3);
+      } else if (Logged_user_info.role_id === 2) {
+        // Manager: Display users with role_id 3 only
+        filteredUsers = users.users.filter(user => user.role.id === 3);
+      }
+    const usersHtml = filteredUsers
+      .map(
+        (user) => `
+        <div class="card mb-2">
+          <div class="card-body">
+            <h5 class="card-title"> ${user.name}</h5>
+            <p class="card-text">
+              Email: ${user.email}<br>
+              Role: ${user.role.role_name}
+            </p>
+            ${
+              user.role.id !== 1
+                ? `<button class="btn btn-outline-primary edit-user-btn" 
+                     data-user='${JSON.stringify(user)}'>Edit</button>
+                   <button class="btn btn-danger" 
+                     onclick="deleteUser(${user.id})">Delete</button>`
+                : ""
+            }
+          </div>
+        </div>
+      `
+      )
+      .join("");
+
+    document.getElementById("all_users").innerHTML = usersHtml;
+
+    // Add click listeners to all edit buttons
+    document.querySelectorAll(".edit-user-btn").forEach((btn) => {
+      btn.addEventListener("click", (e) => {
+        const user = JSON.parse(e.target.getAttribute("data-user"));
+        loadUser(user);
+        document.getElementById("updatepopupOverlay").style.display = "flex";
+      });
+    });
+  } catch (err) {
+    console.error("Error fetching and displaying users:", err);
+    document.getElementById("all_users").innerHTML = `<p>Error loading users.</p>`;
+  }
+}
+
+
+    fetchAndDisplayUsers(); 
+  </script>
+  <!-- add user -->
+<script>
+  // Select DOM elements
+const openPopupBtn = document.getElementById('openPopupBtn');
+const closePopupBtn = document.getElementById('closePopupBtn');
+const popupOverlay = document.getElementById('popupOverlay');
+
+// Open popup
+openPopupBtn.addEventListener('click', () => {
+  popupOverlay.style.display = 'flex';
+});
+
+// Close popup
+closePopupBtn.addEventListener('click', () => {
+  popupOverlay.style.display = 'none';
+});
+
+</script>
+<!-- edit user -->
+<script>
+  function loadUser(user) {
+  // console.log("Loaded User:", user);
+  
+  const Logged_user_info = userInfo();
+
+  // Determine the HTML for the radio buttons based on the role
+  let roleHtml = "";
+if(Logged_user_info.role_id ==1){
+  roleHtml = `
+    <div>
+      <input type="radio" id="admin" name="role_id" value="2" ${
+        user.role.id === 2 ? "checked" : ""
+      }>
+      <label for="admin">Admin</label>
+    </div>
+    <div>
+      <input type="radio" id="user" name="role_id" value="3" ${
+        user.role.id === 3 ? "checked" : ""
+      }>
+      <label for="user">User</label>
+    </div>
+  `;
+}else{
+  roleHtml = `
+    
+    <div>
+      <input type="radio" id="user" name="role_id" value="3" ${
+        user.role.id === 3 ? "checked" : ""
+      }>
+      <label for="user">User</label>
+    </div>
+  `;
+}
+  
+
+  document.getElementById("editForm").innerHTML = `
+    <form>
+      <label for="name">Username:</label>
+      <input type="text" id="updateusername" name="name" value="${user.name}" required><br>
+      <label for="email">Email:</label>
+      <input type="email" id="updateemail" name="email" value="${user.email}" required><br>
+      <label for="email">Password:</label>
+        <input type="password" id="updatepassword" name="password"><br>
+      <p>Role:</p>
+      ${roleHtml}
+      <div class="popup-actions">
+        <button class="btn btn-success" type="button" onclick="updateUser(${user.id})">Update</button>
+        <button class="btn btn-danger" type="button" id="updateclosePopupBtn">Cancel</button>
+      </div>
+    </form>
+  `;
+
+  // Close popup when clicking "Cancel"
+  document.getElementById("updateclosePopupBtn").addEventListener("click", () => {
+    document.getElementById("updatepopupOverlay").style.display = "none";
+  });
+}
+
+</script>
+<!-- Edit -->
+<script>
+  // Select DOM elements
+const updateopenPopupBtn = document.getElementById('updateopenPopupBtn');
+const updateclosePopupBtn = document.getElementById('updateclosePopupBtn');
+const updatepopupOverlay = document.getElementById('updatepopupOverlay');
+
+// Open popup
+document.addEventListener('click', (event) => {
+  if (event.target && event.target.id === 'updateopenPopupBtn') {
+    updatepopupOverlay.style.display = 'flex';
+  }
+});
+
+document.getElementById('updateclosePopupBtn').addEventListener('click', () => {
+    
+
+  updatepopupOverlay.style.display = 'none';
+  
+
+});
+
+
+</script>
+<script>
+  CheckNav();
+
+</script>
+<script>
+  
+  CheckAuth();
+  </script>
+
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>

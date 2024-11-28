@@ -1,0 +1,40 @@
+
+
+body {
+    margin-right: 0;
+    background: rgb(245,111,79);
+    background: linear-gradient(90deg, rgba(245,111,79,1) 0%, rgba(239,85,16,1) 18%, rgba(209,76,11,1) 59%, rgba(170,0,0,1) 100%, rgba(231,128,5,1) 100%); 
+    
+    color: white;
+    height: 100vh;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    /* font-family: 'Lora', sans-serif; */
+  }
+  .login-card {
+    padding: 30px;
+    
+    border-radius: 8px;
+    background-color: #fa744c;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  }
+
+  .logo {
+    font-family: 'Pacifico', cursive;
+    font-size: 2.5rem;
+    position: absolute;
+    top: 30px; /* Adjust to move up or down */
+    left: 50px; /* Adjust to move left or right */
+  }
+  
+  .carousel img {
+    object-fit: cover;
+    height: 100vh;
+    background-image: url("data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAQAAAC1HAwCAAAAC0lEQVR42mNgYAAAAAMAAWgmWQ0AAAAASUVORK5CYII=");
+    background-size: 3px 3px; 
+}
+  .container {
+    max-width: 2000px;
+    
+  }
