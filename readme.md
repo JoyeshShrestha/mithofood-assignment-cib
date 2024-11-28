@@ -131,6 +131,8 @@ Follow these steps to set up the application on your local machine.
 
 3. Interact with the application and explore its features.
 
+4. Open `http://127.0.0.1:8000/api/documentation` for **Swagger Docmentation**
+
 ---
 
 ## Project Structure
