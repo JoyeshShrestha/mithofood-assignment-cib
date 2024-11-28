@@ -46,7 +46,7 @@ The app is divided into two parts:
 
 ## Features
 
-- **Responsive Design**: Optimized for desktops, tablets, and mobile devices.
+
 - **Secure Authentication**: User login and password management.
 - **Dynamic Content**: Seamlessly integrates backend data with the frontend.
 - **Interactive UI**: Smooth user experience with JavaScript functionality.
