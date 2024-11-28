@@ -4,6 +4,11 @@ MithoFoods is a web application that connects users to delicious recipes, offeri
 
 ---
 
+## Note
+
+The backend repo for recipe may not open. Please consider this repo for backend access
+`https://github.com/JoyeshShrestha/Recipe-Blog.git`
+
 ## Table of Contents
 
 - [Overview](#overview)
