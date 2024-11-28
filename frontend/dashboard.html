@@ -15,7 +15,7 @@
   <header>
 <script src="js/index.js"> </script>
 
-    <script src="js/auth.js"></script> <!-- Load the external script -->
+    <script src="js/auth.js"></script> 
     <script>
      redirectIfNotLoggedIn();
     </script>
@@ -99,18 +99,18 @@
   // Fetch the latest recipe from the API
   async function fetchLatestRecipe() {
     try {
-      const response = await fetch('http://127.0.0.1:8000/api/latestrecipe'); // Make a request to the API
+      const response = await fetch('http://127.0.0.1:8000/api/latestrecipe'); 
 
       if (!response.ok) {
         throw new Error('Recipe not found');
       }
 
       const data = await response.json(); // Parse the JSON response
-      const recipe = data.recipe; // Get the recipe object
+      const recipe = data.recipe; 
 
       // Check if the recipe exists
       if (recipe) {
-        // Insert the recipe data into the latest div
+    
         document.querySelector('.latest').innerHTML = `
        <div class="latestBox">
 
@@ -129,17 +129,17 @@
        
           `;
       } else {
-        // If no recipe is found, show a message
+      
         document.querySelector('.latest').innerHTML = `<p>No recipe found.</p>`;
       }
     } catch (error) {
-      // Handle errors (e.g., network issues)
+     
       console.error('Error fetching the latest recipe:', error);
       document.querySelector('.latest').innerHTML = `<p>Error loading recipe.</p>`;
     }
   }
 
-  // Call the function to fetch and display the latest recipe
+
   fetchLatestRecipe();
 </script>
 

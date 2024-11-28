@@ -16,9 +16,9 @@
 </head>
 <body>
   <header>
-    <script src="js/index.js"></script> <!-- Load the external script -->
+    <script src="js/index.js"></script> 
 
-    <script src="js/auth.js"></script> <!-- Load the external script -->
+    <script src="js/auth.js"></script>
     <script>
       redirectIfNotLoggedIn();
      </script>
@@ -147,14 +147,8 @@
 
       // Filter users based on logged-in user's role
       let filteredRecipes = recipes.recipes;
-      console.log(filteredRecipes);
-    //   if (Logged_user_info.role_id === 1) {
-    //     // Admin: Display users with role_id 2 and 3
-    //     filteredUsers = users.users.filter(user => user.role.id === 2 || user.role.id === 3);
-    //   } else if (Logged_user_info.role_id === 2) {
-    //     // Manager: Display users with role_id 3 only
-    //     filteredUsers = users.users.filter(user => user.role.id === 3);
-    //   }
+      
+ 
     const recipesHtml = filteredRecipes
   .map(
     (recipe) => `
@@ -203,7 +197,7 @@ fetchAndDisplayRecipes() ;
   </script>
   <!-- add recipe-->
 <script>
-  // Select DOM elements
+
 const openPopupBtn = document.getElementById('openPopupBtn');
 const closePopupBtn = document.getElementById('closePopupBtn');
 const popupOverlay = document.getElementById('popupOverlay');
@@ -260,7 +254,7 @@ closePopupBtn.addEventListener('click', () => {
 </script>
 <!-- Edit -->
 <script>
-  // Select DOM elements
+
 const updateopenPopupBtn = document.getElementById('updateopenPopupBtn');
 const updateclosePopupBtn = document.getElementById('updateclosePopupBtn');
 const updatepopupOverlay = document.getElementById('updatepopupOverlay');
